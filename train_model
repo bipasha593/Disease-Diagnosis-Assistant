@@ -1,0 +1,50 @@
+import pandas as pd
+import numpy as np
+import joblib
+import os
+
+# Get absolute path of the CSV file
+file_path = os.path.abspath("disease_symptoms.csv")
+
+# Verify if the file exists
+if not os.path.exists(file_path):
+    print(f"❌ Error: The file 'disease_symptoms.csv' was not found at {file_path}.")
+    exit()
+
+# Load dataset
+data = pd.read_csv(file_path)
+
+# Check if 'Disease' column exists
+if "Disease" not in data.columns:
+    print("❌ Error: 'Disease' column is missing in 'disease_symptoms.csv'.")
+    exit()
+
+# Extract Features (Symptoms) and Target (Disease)
+X = data.drop("Disease", axis=1).values  # Convert DataFrame to NumPy array
+y = data["Disease"].values
+
+# Encode diseases manually
+unique_diseases = list(set(y))
+disease_to_int = {disease: i for i, disease in enumerate(unique_diseases)}
+int_to_disease = {i: disease for disease, i in disease_to_int.items()}
+
+y_encoded = np.array([disease_to_int[d] for d in y])  # Convert disease labels to numbers
+
+# Split data into training and testing (80% Train, 20% Test)
+split_index = int(0.8 * len(X))
+X_train, X_test = X[:split_index], X[split_index:]
+y_train, y_test = y_encoded[:split_index], y_encoded[split_index:]
+
+# Implement a simple rule-based model
+def predict_disease(symptoms_input, X_train, y_train):
+    best_match_index = np.argmax(np.sum(X_train == symptoms_input, axis=1))
+    return y_train[best_match_index]
+
+# Save the model (Store training data for similarity matching)
+model_data = {"X_train": X_train, "y_train": y_train, "int_to_disease": int_to_disease}
+
+# Save model and label encoder
+joblib.dump(model_data, "disease_model.pkl")
+joblib.dump(disease_to_int, "label_encoder.pkl")
+
+print("✅ Model training complete. Files saved as 'disease_model.pkl' and 'label_encoder.pkl'.")
