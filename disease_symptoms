@@ -1,0 +1,14 @@
+Fever	Cough	Fatigue	Headache	Sore_Throat	Runny_Nose	Shortness_of_Breath	Chest_Pain	Nausea	Diarrhea	Joint_Pain	Chills	Loss_of_Taste	Loss_of_Smell	Skin_Rash	Disease
+1	0	1	0	1	0	0	0	0	0	0	1	0	0	0	Flu
+0	1	1	1	1	1	1	0	1	0	0	1	1	1	0	COVID-19
+1	1	0	0	0	1	0	0	0	0	0	0	0	0	0	Cold
+0	1	0	1	1	1	0	0	0	0	0	0	0	0	1	Allergy
+1	1	1	0	0	0	1	1	0	1	0	1	0	0	0	Malaria
+1	0	1	1	0	0	0	1	1	1	1	1	0	0	0	Typhoid
+1	0	1	0	0	0	1	1	1	0	1	1	0	0	0	Tuberculosis
+0	1	0	0	0	1	1	0	1	1	0	0	0	0	0	Asthma
+1	1	1	1	0	0	1	1	1	1	1	1	0	0	1	Dengue
+1	0	1	0	0	0	0	0	1	1	1	1	0	0	1	Chikungunya
+1	0	0	1	1	0	0	0	1	1	0	1	0	0	1	Food Poisoning
+0	1	1	1	1	0	1	0	1	1	0	1	0	0	0	Pneumonia
+1	0	1	0	0	0	1	1	1	1	0	1	0	0	0	Hepatitis
